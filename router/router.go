@@ -132,10 +132,6 @@ func (a *App) Listen(addr string) error {
 		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 		defer cancel()
 
-		go func() {
-			<-ctx.Done()
-		}()
-
 		if err := srv.Shutdown(ctx); err != nil {
 			return fmt.Errorf("server shutdown failed: %v", err)
 		}
